@@ -1,0 +1,15 @@
+Good morning. Here's your briefing for {{ date }}.
+
+{{ exec_summary }}
+
+Weather today: {{ weather }}
+
+{% if calendar %}On your calendar: {{ calendar }}{% endif %}
+
+{% if important_emails %}From your inbox: {{ important_emails }}{% endif %}
+
+{% if github_prs %}GitHub updates: {{ github_prs }}{% endif %}
+
+{% if watchlist %}Keep an eye on: {{ watchlist }}{% endif %}
+
+That's all for your briefing on {{ date }}. Have a productive day.

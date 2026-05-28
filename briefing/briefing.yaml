@@ -1,0 +1,53 @@
+# ═══════════════════════════════════════════════════════════════
+# Hermes Radio — Morning Briefing Config
+# ═══════════════════════════════════════════════════════════════
+
+# ── Mode ──────────────────────────────────────────────────────
+# "text" — Deliver to Telegram as text
+# "audio" — Also generate TTS + FFmpeg MP3
+mode: text
+
+# ── TTS (audio mode only) ─────────────────────────────────────
+tts:
+  voice: "en-US-ChristopherNeural"
+
+# ── Output ────────────────────────────────────────────────────
+output:
+  directory: "./output"
+  cleanup_days: 7
+
+# ── Templates Directory ──────────────────────────────────────
+templates_dir: "templates"
+
+# ── Segments ──────────────────────────────────────────────────
+# All segments are source: llm — the agent fills them using skills.
+# The prompts are guides for what to return.
+# Order determines template variable availability.
+segments:
+  - id: exec_summary
+    source: llm
+    enabled: true
+
+  - id: weather
+    source: llm
+    enabled: true
+
+  - id: calendar
+    source: llm
+    enabled: true
+
+  - id: important_emails
+    source: llm
+    enabled: true
+
+  - id: ai_devops
+    source: llm
+    enabled: true
+
+  - id: github_prs
+    source: llm
+    enabled: true
+
+  - id: watchlist
+    source: llm
+    enabled: true

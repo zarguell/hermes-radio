@@ -1,0 +1,34 @@
+☀️ **Morning Briefing** — {{ date }}
+
+{% if exec_summary %}{{ exec_summary }}
+{% endif %}
+
+{% if weather %}
+⛅ **Weather**
+{{ weather }}
+{% endif %}
+
+{% if calendar %}
+📅 **Today's Schedule**
+{{ calendar }}
+{% endif %}
+
+{% if important_emails %}
+📬 **Important Emails**
+{{ important_emails }}
+{% endif %}
+
+{% if ai_devops %}
+🤖 **AI Agents & DevOps**
+{{ ai_devops }}
+{% endif %}
+
+{% if github_prs %}
+🔄 **GitHub PRs**
+{{ github_prs }}
+{% endif %}
+
+{% if watchlist %}
+👁️ **Watchlist**
+{{ watchlist }}
+{% endif %}

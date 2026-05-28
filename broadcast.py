@@ -371,6 +371,7 @@ def main():
             "  python3 broadcast.py --mode text                # full pipeline (text)\n"
             "  python3 broadcast.py --step collect             # zero-token data → JSON\n"
             "  python3 broadcast.py --step build ctx.json      # build from context\n"
+            "  python3 broadcast.py --render template.j2 ctx.json  # render any template\n"
         ),
     )
     parser.add_argument("-c", "--config", default="config.yaml",
@@ -379,6 +380,8 @@ def main():
                         help="Override output format (audio/text)")
     parser.add_argument("--step", choices=["collect", "build"], default=None,
                         help="Pipeline step: collect (data → JSON) or build (context → output)")
+    parser.add_argument("--render", metavar="TEMPLATE",
+                        help="Render a specific template file with context JSON and print to stdout")
     parser.add_argument("context_file", nargs="?",
                         help="Path to context JSON (required for --step build)")
     args = parser.parse_args()
@@ -395,8 +398,8 @@ def main():
     output_dir = config_dir / cfg["output"]["directory"]
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    searxng_base = cfg["searxng"]["base_url"]
-    searxng_timeout = cfg["searxng"]["timeout"]
+    searxng_base = cfg.get("searxng", {}).get("base_url", "")
+    searxng_timeout = cfg.get("searxng", {}).get("timeout", 15)
 
     # ── Step: collect ──
     if args.step == "collect":
@@ -420,6 +423,21 @@ def main():
         with open(ctx_path) as f:
             build_json = json.load(f)
         run_build(build_json, cfg, templates_dir, output_dir)
+        return
+
+    # ── Render arbitrary template ──
+    if args.render:
+        if not args.context_file:
+            print("[error] --render requires a context JSON file path", file=sys.stderr)
+            sys.exit(1)
+        ctx_path = Path(args.context_file).resolve()
+        if not ctx_path.exists():
+            print(f"[error] Context file not found: {ctx_path}", file=sys.stderr)
+            sys.exit(1)
+        with open(ctx_path) as f:
+            build_json = json.load(f)
+        rendered = render_template(templates_dir / args.render, build_json["ctx"])
+        print(rendered)
         return
 
     # ── No step = full pipeline (legacy) ──
