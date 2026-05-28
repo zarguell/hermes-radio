@@ -7,6 +7,10 @@ Here are today's top AI headlines.
 {% endfor %}
 {% endif %}
 
+{% if summary %}
+Here's a quick summary. {{ summary }}
+{% endif %}
+
 {% if tip %}
 Tech tip of the day. {{ tip }}
 {% endif %}

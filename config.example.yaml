@@ -6,47 +6,120 @@
 
 # ── Mode ──────────────────────────────────────────────────────
 # "audio" — Generate TTS + FFmpeg MP3, deliver to Telegram
-# "text"  — Generate plain-text briefing (no TTS), deliver to Telegram
+# "text"  — Generate plain-text briefing (no TTS)
 mode: audio
 
 # ── SearXNG ───────────────────────────────────────────────────
-# Required for headlines + music discovery. Self-hosted instance.
+# Required for searxng-sourced segments.
 searxng:
   base_url: "http://localhost:8888"     # Your SearXNG instance
   timeout: 15                            # Request timeout in seconds
 
 # ── TTS (audio mode only) ─────────────────────────────────────
 tts:
-  # List available voices: uv run edge-tts --list-voices
-  # Recommended: en-US-ChristopherNeural, en-US-AriaNeural,
-  #              en-GB-RyanNeural, en-US-JennyNeural
   voice: "en-US-ChristopherNeural"
 
 # ── Output ────────────────────────────────────────────────────
 output:
-  directory: "./output"       # Where broadcast MP3s are saved
-  cleanup_days: 7              # Auto-delete broadcasts older than this
+  directory: "./output"
+  cleanup_days: 7
 
 # ── Templates Directory ──────────────────────────────────────
-# Contains tts_script.txt.j2 (narration) and telegram.md.j2 (caption).
 templates_dir: "templates"
 
-# ── Headlines ─────────────────────────────────────────────────
-headlines:
-  enabled: true
-  query: "AI artificial intelligence {month} {year}"
-  max_results: 4
+# ── Segments ──────────────────────────────────────────────────
+# Ordered list of show segments. Each segment:
+#   id       — variable name injected into templates (e.g. {{ headlines }})
+#   source   — where data comes from: searxng | bank | llm | literal
+#   enabled  — true/false
+#   params   — source-specific parameters
+#   prompt   — (llm only) instruction template for the agent
+#   model_hint — (llm only) suggested model for this segment
+#
+# Template variables available in ALL prompts:
+#   {date}, {month}, {year} — date fields
+#   Plus any earlier segment's output (e.g. {headlines}, {tip})
+#
+# segments:
+#   - id: headlines
+#     source: searxng
+#     params:
+#       query: "AI artificial intelligence {month} {year}"
+#       max_results: 4
+#       category: news
+#
+#   - id: summary
+#     source: llm
+#     prompt: >
+#       Summarize these {n_headlines} AI headlines in 2-3 concise sentences.
+#       Focus on the most impactful developments.
+#
+#       Headlines:
+#       {headlines}
+#     model_hint: "deepseek-v4-flash"
+#
+#   - id: joke
+#     source: llm
+#     prompt: "Tell a short original tech joke about {tip}. Clean, under 2 sentences."
+#     model_hint: "deepseek-v4-flash"
+#
+#   - id: tip
+#     source: bank
+#     params:
+#       bank_path: ./content_banks/tips.txt
 
-# ── Music Discovery ───────────────────────────────────────────
-music:
-  enabled: true
-  max_results: 1               # How many trending songs to search
+segments:
+  - id: intro
+    source: literal
+    enabled: true
 
-# ── Content Banks ─────────────────────────────────────────────
-# Each key maps to a text file. The script picks one item per day
-# using day-of-year rotation. Lines starting with # are ignored.
-content:
-  banks:
-    tips: "./content_banks/tips.txt"
-    jokes: "./content_banks/jokes.txt"
-    quotes: "./content_banks/quotes.txt"
+  - id: headlines
+    source: searxng
+    enabled: true
+    params:
+      query: "AI artificial intelligence {month} {year}"
+      max_results: 4
+      category: news
+
+  # ── Example LLM segment ──
+  # Uncomment to add an AI-generated summary of the headlines.
+  # The agent will process the prompt and fill in the output.
+  #
+  # - id: summary
+  #   source: llm
+  #   prompt: >
+  #     Summarize these {n_headlines} AI headlines in 2-3 concise sentences.
+  #     Focus on the most impactful developments.
+  #
+  #     Headlines:
+  #     {headlines_str}
+  #   model_hint: "deepseek-v4-flash"
+
+  - id: tip
+    source: bank
+    enabled: true
+    params:
+      bank_path: ./content_banks/tips.txt
+
+  - id: quote
+    source: bank
+    enabled: true
+    params:
+      bank_path: ./content_banks/quotes.txt
+
+  - id: music
+    source: searxng
+    enabled: true
+    params:
+      max_results: 1
+      category: videos
+
+  - id: joke
+    source: bank
+    enabled: true
+    params:
+      bank_path: ./content_banks/jokes.txt
+
+  - id: outro
+    source: literal
+    enabled: true
