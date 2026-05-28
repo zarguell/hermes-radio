@@ -1,0 +1,22 @@
+# Tech Tips — one per line, rotated daily by day-of-year
+# Add your own tips below or replace these.
+Use /wiki search to find any page across your mesh.
+Dashboards auto-refresh every 30 seconds — no need to reload manually.
+Set up health checks on your containers to catch failures before users do.
+Use Tailscale for secure networking between devices without opening ports.
+Automate backups with restic — encrypted, deduplicated, and cloud-native.
+Use Prometheus + Grafana for monitoring; start with node_exporter for system metrics.
+Pin Python dependencies with pip-compile or uv lock for reproducible builds.
+Use structured logging (JSON) so you can grep, jq, and ship logs anywhere.
+Set up a reverse proxy with Caddy — automatic HTTPS and minimal config.
+Use git worktrees to work on multiple branches simultaneously without stashing.
+Run containers with --restart=unless-stopped so they survive reboots.
+Use direnv for per-directory environment variables — no more sourcing .env files.
+Automate SSL renewal with lego or acme.sh before your certs expire.
+Use sqlite-vec for vector search in SQLite — no separate vector database needed.
+Use atuin to sync and search your shell history across machines.
+Set up a local LLM with ollama for privacy-sensitive tasks.
+Use systemd timers instead of cron — better logging, dependencies, and integration.
+Use magic-wormhole to transfer files between machines securely.
+Use jq for JSON processing in the shell — it's more powerful than you think.
+Set up logrotate early. Your disk will thank you later.

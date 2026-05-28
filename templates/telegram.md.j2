@@ -1,0 +1,27 @@
+🎙️ **Hermes Radio** — {{ date }}
+
+{% if headlines -%}
+**Top Headlines:**
+{% for h in headlines %}
+• {{ h }}
+{% endfor %}
+{% endif %}
+
+{% if tip %}
+**💡 Tip:** {{ tip }}
+{% endif %}
+
+{% if quote %}
+**💬 Quote:** {{ quote }}
+{% endif %}
+
+{% if joke %}
+**😂 Joke:** {{ joke }}
+{% endif %}
+
+{% if music %}
+**🎵 Trending:** {{ music }}
+{% endif %}
+
+\
+_Duration: {% if mode == 'audio' %}{{ duration }}s — {% endif %}Zero LLM tokens_

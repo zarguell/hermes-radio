@@ -1,0 +1,22 @@
+# Jokes — one per line, rotated daily by day-of-year
+# All tech/AI themed. Keep 'em clean.
+Why did the developer go broke? Because he used up all his cache.
+What do you call a fake noodle? An impasta — just like my last merge request.
+Why do programmers prefer dark mode? Because light attracts bugs.
+How many programmers does it take to change a light bulb? None, that's a hardware problem.
+Why did the AI break up with the database? Too many join issues.
+What's a computer's favorite beat? An algorithm.
+Why was the JS developer sad? Because he didn't know how to 'null' his feelings.
+What do you call a bear with no teeth? A gummy bear — much like my API responses.
+Why did the Linux user get locked out? He forgot his sudo password.
+There are only 10 types of people in the world: those who understand binary and those who don't.
+Why did the server go to therapy? It had too many unresolved issues.
+What's the object-oriented way to become wealthy? Inheritance.
+Why did the DBA leave his wife? She had too many foreign keys.
+A SQL query walks into a bar, walks up to two tables and asks: "Can I join you?"
+Why do Java developers wear glasses? Because they can't C#.
+What did the router say to the doctor? "I need a bandwidth-aid."
+Why was the function so bad at arguments? It kept returning undefined.
+How do you comfort a JavaScript bug? You console it.
+Why did the developer go to the doctor? He caught the RESTless API syndrome.
+A web developer walks into a restaurant and asks for HTML. The waiter says, "Sorry, we only serve text-based formats."

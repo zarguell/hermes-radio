@@ -1,0 +1,17 @@
+# Quotes — one per line, rotated daily by day-of-year
+# Tech, engineering, and wisdom.
+If it's not monitored, it's broken.
+Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. — Antoine de Saint-Exupéry
+The best way to predict the future is to invent it. — Alan Kay
+Any sufficiently advanced technology is indistinguishable from magic. — Arthur C. Clarke
+First, solve the problem. Then, write the code. — John Johnson
+Talk is cheap. Show me the code. — Linus Torvalds
+The function of good software is to make the complex appear to be simple. — Grady Booch
+Programming isn't about what you know; it's about what you can figure out. — Chris Pine
+Simplicity is a great virtue but it requires hard work to achieve it. — Edsger W. Dijkstra
+Before software can be reusable it first has to be usable. — Ralph Johnson
+Make it work, make it right, make it fast. — Kent Beck
+The most dangerous phrase in the language is: "We've always done it this way." — Grace Hopper
+A well-designed system makes the right thing easy to do and the wrong thing hard.
+Measure twice, cut once. And then add error handling.
+Automate everything you've done more than twice.

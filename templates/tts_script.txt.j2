@@ -1,0 +1,26 @@
+This is Hermes Radio for {{ date }}. Your daily dose of AI news, tech tips, and a bit of fun.
+
+{% if headlines %}
+Here are today's top AI headlines.
+{% for h in headlines %}
+{{ h }}.
+{% endfor %}
+{% endif %}
+
+{% if tip %}
+Tech tip of the day. {{ tip }}
+{% endif %}
+
+{% if quote %}
+Today's quote. {{ quote }}
+{% endif %}
+
+{% if music %}
+In music news, {{ music }} is trending.
+{% endif %}
+
+{% if joke %}
+And now for a joke. {{ joke }}
+{% endif %}
+
+That's all for Hermes Radio on {{ date }}. Stay curious, build cool stuff, and automate everything. Have a great day!

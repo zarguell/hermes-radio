@@ -1,0 +1,52 @@
+# ═══════════════════════════════════════════════════════════════
+# Hermes Radio — Configuration
+# ═══════════════════════════════════════════════════════════════
+# Copy this file to config.yaml and customize for your setup.
+# All paths are relative to this config file's directory.
+
+# ── Mode ──────────────────────────────────────────────────────
+# "audio" — Generate TTS + FFmpeg MP3, deliver to Telegram
+# "text"  — Generate plain-text briefing (no TTS), deliver to Telegram
+mode: audio
+
+# ── SearXNG ───────────────────────────────────────────────────
+# Required for headlines + music discovery. Self-hosted instance.
+searxng:
+  base_url: "http://localhost:8888"     # Your SearXNG instance
+  timeout: 15                            # Request timeout in seconds
+
+# ── TTS (audio mode only) ─────────────────────────────────────
+tts:
+  # List available voices: uv run edge-tts --list-voices
+  # Recommended: en-US-ChristopherNeural, en-US-AriaNeural,
+  #              en-GB-RyanNeural, en-US-JennyNeural
+  voice: "en-US-ChristopherNeural"
+
+# ── Output ────────────────────────────────────────────────────
+output:
+  directory: "./output"       # Where broadcast MP3s are saved
+  cleanup_days: 7              # Auto-delete broadcasts older than this
+
+# ── Templates Directory ──────────────────────────────────────
+# Contains tts_script.txt.j2 (narration) and telegram.md.j2 (caption).
+templates_dir: "templates"
+
+# ── Headlines ─────────────────────────────────────────────────
+headlines:
+  enabled: true
+  query: "AI artificial intelligence {month} {year}"
+  max_results: 4
+
+# ── Music Discovery ───────────────────────────────────────────
+music:
+  enabled: true
+  max_results: 1               # How many trending songs to search
+
+# ── Content Banks ─────────────────────────────────────────────
+# Each key maps to a text file. The script picks one item per day
+# using day-of-year rotation. Lines starting with # are ignored.
+content:
+  banks:
+    tips: "./content_banks/tips.txt"
+    jokes: "./content_banks/jokes.txt"
+    quotes: "./content_banks/quotes.txt"

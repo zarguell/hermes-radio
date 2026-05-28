@@ -1,0 +1,24 @@
+# Output files
+output/
+*.mp3
+
+# Local config (copy of config.example.yaml)
+config.yaml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
